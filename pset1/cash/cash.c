@@ -2,8 +2,6 @@
 #include <cs50.h>
 #include <math.h>
 
-//int function(int n);
-
 int main(void)
 {
     /*
@@ -68,3 +66,31 @@ int main(void)
 
     printf("%i\n", n);
 }
+
+/*
+//A function that takes two arguments, an amount of cash and the value of a coin,
+//and returns how many coins of that value would be used, and the remaining amount of cash.
+int calc_n(a, v)
+{
+    int r = a % v;
+    int n = (a - r) / v;
+
+    int ret[2] = {r, n};
+
+    return ret;
+}
+*/
+
+/*
+//Create a function that simply takes value of current coin as input, uses the global variable c,
+//and modifies the global variable n and c.
+int add_coins(v)
+{
+    //temporary variable
+    int t = c % v;
+    //Add coins to n
+    n += (c - t) / v;
+    //Change c for next time
+    c = t;
+}
+*/
