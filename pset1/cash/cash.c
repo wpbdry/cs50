@@ -29,12 +29,10 @@ int main(void)
         changef = get_float("Change owed: ");
 
         //Round to 2 decimal places and convert to int
-        changef = changef * 100;
-        changei2 = (int)changef;
+        changei2 = (int)round(changef * 100);
 
         //Round to 4 decimal places and convert to int
-        changef = changef * 100;
-        changei4 = (int)changef;
+        changei4 = (int)round(changef * 10000);
     }
     while (changef < 0                      //If change entered is negative
         || changei2 * 100 != changei4);     //Or if 2 dec and 4 dec rounding are not equal)
