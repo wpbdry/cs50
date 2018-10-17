@@ -18,28 +18,34 @@ int main(void)
     //Check type based on firts two numbers
     string type;
     //AmEx
-    if (ccn[0] == '3' && (ccn[1] == '4' || ccn[1] == '7')) {
+    if (ccn[0] == '3' && (ccn[1] == '4' || ccn[1] == '7'))
+    {
         type = "AMEX";
     }
     //Master
-    else if (ccn[0] == '5' && ccn[1] >= '1' && ccn[1] <= '5') {
+    else if (ccn[0] == '5' && ccn[1] >= '1' && ccn[1] <= '5')
+    {
         type = "MASTERCARD";
     }
     //Visa
-    else if (ccn[0] == '4') {
+    else if (ccn[0] == '4')
+    {
         type = "VISA";
     }
-    else {
+    else
+    {
         type = "INVALID";
     }
 
     //Verify checksum
     int checksum = 0;
-    for (int i = 0, l = strlen(ccn); i < l; i++) {
-
+    for (int i = 0, l = strlen(ccn); i < l; i++)
+    {
         //First check that it is a number, not something else
-        if (!(ccn[i] >= '0' && ccn[i] <= '9')) {
-            if (i != 0) {
+        if (!(ccn[i] >= '0' && ccn[i] <= '9'))
+        {
+            if (i != 0)
+            {
                 printf("\n"); //To get this on the line below the asterisks
             }
             printf("The program encountered an error. Please only include characters from 0 to 9.\n");
@@ -47,30 +53,36 @@ int main(void)
         }
 
         //Multiply by 2 and add these digits to checksum if it's a digit where you have to do that
-        if ((l - i) % 2 == 0) {
+        if ((l - i) % 2 == 0)
+        {
             int temp = (ccn[i] - '0') * 2;
-            if (temp > 9) {
+            if (temp > 9)
+            {
                 temp = temp - 9;
             }
             checksum += temp;
         }
 
         //Otherwise just add it.
-        else {
+        else
+        {
             checksum += (ccn[i] - '0');
         }
 
         //Print asterisks, except the last 4 digits
-        if (i < (l - 4)) {
+        if (i < (l - 4))
+        {
             printf("*");
         }
-        else {
+        else
+        {
             printf("%c", ccn[i]);
         }
     }
 
     //Then check if the checksum is correct at the end
-    if (checksum % 10 != 0) {
+    if (checksum % 10 != 0)
+    {
         type = "INVALID";
     }
 
