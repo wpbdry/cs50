@@ -39,8 +39,11 @@ int main(void)
 
         //First check that it is a number, not something else
         if (!(ccn[i] >= '0' && ccn[i] <= '9')) {
-            type = "INVALID";
-            break;
+            if (i != 0) {
+                printf("\n"); //To get this on the line below the asterisks
+            }
+            printf("The program encountered an error. Please only include characters from 0 to 9.\n");
+            return 0;
         }
 
         //Multiply by 2 and add these digits to checksum if it's a digit where you have to do that
@@ -56,6 +59,14 @@ int main(void)
         else {
             checksum += (ccn[i] - '0');
         }
+
+        //Print asterisks, except the last 4 digits
+        if (i < (l - 4)) {
+            printf("*");
+        }
+        else {
+            printf("%c", ccn[i]);
+        }
     }
 
     //Then check if the checksum is correct at the end
@@ -63,7 +74,10 @@ int main(void)
         type = "INVALID";
     }
 
+    //Print result
+    printf("\n");
     printf("%s\n", type);
 
+    //Always return 0
     return 0;
 }
