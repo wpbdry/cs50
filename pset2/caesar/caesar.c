@@ -12,7 +12,7 @@ int main(int argc, string argv[])
         //Program functioality
         int shift = strtol(argv[1], NULL, 10);
         //Throw error for non numerics
-        if(shift == 0 && strcmp(argv[1], "0") != 0)
+        if (shift == 0 && strcmp(argv[1], "0") != 0)
         {
             printf("Error: please pass a valid whole number.\n");
             return 1;
@@ -25,7 +25,7 @@ int main(int argc, string argv[])
         strcpy(encr, input);
 
         //go through each character
-        for (int i=0; i<l; i++)
+        for (int i = 0; i < l; i++)
         {
             //Set zero offset depending on case
             int offset;
@@ -34,7 +34,7 @@ int main(int argc, string argv[])
                 offset = 65;
             }
             //Check for lowercase or lower case
-             else if (islower(input[i]))
+            else if (islower(input[i]))
             {
                 offset = 97;
             }
@@ -49,7 +49,7 @@ int main(int argc, string argv[])
             base0 += shift;
             base0 = base0 % 26;
             //if negative shift
-            if(base0 < 0)
+            if (base0 < 0)
             {
                 base0 += 26;
             }
