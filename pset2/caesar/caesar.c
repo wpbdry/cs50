@@ -11,6 +11,12 @@ int main(int argc, string argv[])
     {
         //Program functioality
         int shift = strtol(argv[1], NULL, 10);
+        //Throw error for non numerics
+        if(shift == 0 && strcmp(argv[1], "0") != 0)
+        {
+            printf("Error: please pass a valid whole number.\n");
+            return 1;
+        }
 
         string input = get_string("plaintext: ");
         int l = strlen(input);
@@ -50,7 +56,7 @@ int main(int argc, string argv[])
     }
     else
     {
-        printf("Error: Please enter exaclty one parameter.");
+        printf("Error: Please pass exaclty one parameter.\n");
         return 1;
     }
 }
