@@ -18,12 +18,13 @@ int main(int argc, string argv[])
             return 1;
         }
 
+        //Get plaintext from user and create arr for encrypted text
         string input = get_string("plaintext: ");
         int l = strlen(input);
-        char encr[l + 1];
+        char encr[l];
         strcpy(encr, input);
 
-        //go thorough each character
+        //go through each character
         for (int i=0; i<l; i++)
         {
             //Set zero offset depending on case
@@ -47,10 +48,16 @@ int main(int argc, string argv[])
             int base0 = input[i] - offset;
             base0 += shift;
             base0 = base0 % 26;
+            //if negative shift
+            if(base0 < 0)
+            {
+                base0 += 26;
+            }
             char ascii = base0 + offset;
             encr[i] = ascii;
         }
 
+        //Print result
         printf("ciphertext: %s\n", encr);
         return 0;
     }
