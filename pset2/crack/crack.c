@@ -29,12 +29,11 @@ void iterate(int current_it, int last_it, char current_parent[], int parent_leng
 
             if (strncmp(new_hash, orig_hash, 13) == 0)
             {
-                printf("%s", current_try);
+                printf("%s\n", current_try);
             }
 
             //Call the function again, with increased iteration number and the current try as parent
             iterate(current_it + 1, last_it, current_try, parent_length + 1, characters, orig_hash, salt);
-
         }
     }
 }
@@ -54,7 +53,7 @@ int main(int argc, string argv[])
         salt[2] = '\0';
 
         //cycle through possibilities
-        int const max_char_count = 3;
+        int const max_char_count = 5;
         string characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
         int char_len = strlen(characters);
         iterate(1, max_char_count, "", 0, characters, hash, salt);
