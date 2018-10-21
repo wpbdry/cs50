@@ -12,13 +12,14 @@ void iterate(int current_it, int last_it, char current_parent[], int parent_leng
     if (current_it <= last_it)
     {
         //Make an array for the current try with one more space and copy the parent to it, leaving the last space blank
-        char current_try[parent_length + 1];
+        int child_length = parent_length + 1;
+        char current_try[child_length];
         for (int i = 0; i < parent_length; i++)
         {
             current_try[i] = current_parent[i];
         }
 
-        //Go through all characters and call the functino again
+        //Go through all characters and call the function again
         for (int i = 0, l = strlen(characters); i < l; i++)
         {
             current_try[parent_length] = characters[i]; //current_try[parent_length] is the last position
