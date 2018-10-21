@@ -6,7 +6,7 @@
 #include <unistd.h>
 
 //Function to iterate through characters
-string iterate(int current_it, int last_it, char current_parent[], int parent_length, string characters, string orig_hash, string salt)
+void iterate(int current_it, int last_it, char current_parent[], int parent_length, string characters, string orig_hash, string salt)
 {
     //If we haven't yet reached the max digit length
     if (current_it <= last_it)
@@ -24,27 +24,17 @@ string iterate(int current_it, int last_it, char current_parent[], int parent_le
             current_try[parent_length] = characters[i]; //current_try[parent_length] is the last position
 
             //Hash and check
-            printf("%s", current_try);
+             printf("%s, ", current_try);
             string new_hash = crypt(current_try, salt);
             if (new_hash == orig_hash)
             {
-                string return_string = current_try;
-                printf("test %s", return_string);
-                return return_string;
+
             }
 
             //Call the function again, with increased iteration number and the current try as parent
-            string possible_return = iterate(current_it + 1, last_it, current_try, parent_length + 1, characters, orig_hash, salt);
-            if (possible_return)
-            {
-                return possible_return;
-            }
+            iterate(current_it + 1, last_it, current_try, parent_length + 1, characters, orig_hash, salt);
+
         }
-        return "\0";
-    }
-    else
-    {
-        return "\0";
     }
 }
 
@@ -65,10 +55,9 @@ int main(int argc, string argv[])
         //cycle through possibilities
         int const max_char_count = 3;
         string characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+        int char_len = strlen(characters);
+        iterate(1, max_char_count, "", 0, characters, hash, salt);
 
-        string answer = iterate(1, max_char_count, "", 0, characters, hash, salt);
-
-        printf("cracked: %s\n", answer);
         return 0;
     }
     else
