@@ -25,11 +25,11 @@ void iterate(int current_it, int last_it, char current_parent[], int parent_leng
             current_try[parent_length] = characters[i]; //current_try[parent_length] is the last position
 
             //Hash and check
-             printf("%s, ", current_try);
             string new_hash = crypt(current_try, salt);
-            if (new_hash == orig_hash)
-            {
 
+            if (strncmp(new_hash, orig_hash, 13) == 0)
+            {
+                printf("%s", current_try);
             }
 
             //Call the function again, with increased iteration number and the current try as parent
