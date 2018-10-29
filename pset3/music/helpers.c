@@ -4,6 +4,7 @@
 #include <math.h>
 #include "helpers.h"
 #include <string.h>
+#include <stdio.h>
 
 // Converts a fraction formatted as "X/Y" to eighths
 int duration(string fraction)
@@ -12,6 +13,7 @@ int duration(string fraction)
     int denominator = (int)fraction[2];
     int multiplier = 8 / denominator;
     numerator = numerator * multiplier;
+    printf("%i", numerator);
     return numerator;
 }
 
@@ -26,51 +28,51 @@ int frequency(string note)
     }
     if (note[0] == 'B')
     {
-        semitones = -2;
+        semitones = 2;
     }
     if (note[0] == 'C')
     {
-        semitones = 9;
+        semitones = -9;
     }
     if (note[0] == 'D')
     {
-        semitones = 7;
+        semitones = -7;
     }
     if (note[0] == 'E')
     {
-        semitones = 5;
+        semitones = -5;
     }
     if (note[0] == 'F')
     {
-        semitones = 4;
+        semitones = -4;
     }
     if (note[0] == 'G')
     {
-        semitones = 2;
+        semitones = -2;
     }
 
     //Accidentals
     int octave;
     if (note[1] == '#')
     {
-        semitones -= 1;
-        octave = (int)note[2];
+        semitones ++;
+        octave = note[2] - '0';
     }
     else if (note[1] == 'b')
     {
-        semitones ++;
-        octave = (int)note[2];
+        semitones -= 1;
+        octave = note[2] - '0';
     }
     else
     {
-        octave = (int)note[1];
+        octave = note[1] - '0';
     }
 
     //correct semitone according to actual octave
-    octave = 4 - octave;
+    octave = octave - 4;
     semitones += octave * 12;
 
-    int frequency = round(pow(2, semitones / 12) * 440);
+    int frequency = round(pow(2.00, (float)semitones / 12.00) * 440);
     return frequency;
 }
 
