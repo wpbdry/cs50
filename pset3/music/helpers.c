@@ -9,11 +9,10 @@
 // Converts a fraction formatted as "X/Y" to eighths
 int duration(string fraction)
 {
-    int numerator = (int)fraction[0];
-    int denominator = (int)fraction[2];
+    int numerator = fraction[0] - '0';
+    int denominator = fraction[2] - '0';
     int multiplier = 8 / denominator;
     numerator = numerator * multiplier;
-    printf("%i", numerator);
     return numerator;
 }
 
@@ -79,5 +78,5 @@ int frequency(string note)
 // Determines whether a string represents a rest
 bool is_rest(string s)
 {
-    return (strcmp(s, ""));
+    return (!strcmp(s, ""));
 }
